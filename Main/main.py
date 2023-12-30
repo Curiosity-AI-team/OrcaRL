@@ -1,1 +1,0 @@
-# This should include all comamnds to launch the project
