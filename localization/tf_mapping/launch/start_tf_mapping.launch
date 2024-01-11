@@ -58,7 +58,7 @@
      <node name="tf_mapping_node" pkg="tf_mapping" type="tf_mapping_node" output="screen"  />
 
     <!-- Start rviz -->
-    <group if="$(arg start_rviz)" >
+    <!-- <group if="$(arg start_rviz)" >
         <group if="$(arg use_bag)" >
             <node pkg="rviz" type="rviz" name="rviz" args="-d $(find tf_mapping)/config/tf_mapping_bag.rviz"/>
         </group>
@@ -66,5 +66,5 @@
         <group unless="$(arg use_bag)" >
             <node pkg="rviz" type="rviz" name="rviz" args="-d $(find tf_mapping)/config/tf_mapping.rviz"/>
         </group>
-    </group>
+    </group> -->
 </launch>
