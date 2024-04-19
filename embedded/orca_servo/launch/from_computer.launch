@@ -1,6 +1,0 @@
-<launch>
-   <!-- Node to run -->
-   <node name="from_computer" pkg="orca_servo" type="from_computer.py" output="screen">
-       <!-- Add any arguments here -->
-   </node>
-</launch>
