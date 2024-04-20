@@ -1,23 +1,5 @@
 <launch>
 
-    <node pkg="tf" type="static_transform_publisher" name="static_transform_publisher" args="0 0 0 0 0 0 map odom 100" />
-
-    <node pkg="nodelet" type="nodelet" name="imu_manager" args="manager" output="screen" />
-
-    <node pkg="imu_complementary_filter" type="complementary_filter_node" name="complementary_filter_gain_node" output="screen"> <param name="do_bias_estimation" value="true"/>
-        <param name="do_adaptive_gain" value="false"/>
-        <param name="use_mag" value="true"/>
-        <param name="gain_acc" value="0.01"/>
-        <param name="gain_mag" value="0.01"/>
-    </node>
-
-    <node pkg="nodelet" type="nodelet" name="ImuFilterNodelet" args="load imu_filter_madgwick/ImuFilterNodelet imu_manager" output="screen">
-        <param name="publish_tf" value="true"/>
-        <param name="gain" value="0.5"/>
-    </node>
-
-    <node pkg="mpu9250-driver" name="mpu9250" type="mpu9250.py" output="screen" required="true"> </node>
-
     <arg name="camera_model"      default="OAK-D-LITE" />
     <arg name="tf_prefix"         default="oak" />
     <arg name="mode"              default="depth" />

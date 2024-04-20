@@ -1,0 +1,7 @@
+1 Run Camera launch
+2 Run Aruco launch
+3 run ekf slam
+4 run kalman filter
+5 run memory launch
+6 run yolo
+7run yolo to tf
