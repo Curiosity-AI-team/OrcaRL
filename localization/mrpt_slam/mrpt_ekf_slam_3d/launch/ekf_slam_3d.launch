@@ -2,7 +2,7 @@
 
 <launch>
   <!--PLAY RAWLOG FILE-->
-  <include file="$(find mrpt_rawlog)/launch/demo_play_ekf.launch" />
+  <!-- <include file="$(find mrpt_rawlog)/launch/demo_play_ekf.launch" /> -->
 
   <!--PARAMETERS-->
   <param name="ellipse_scale" value="1"/>
@@ -17,7 +17,10 @@
   <env name="ROSCONSOLE_CONFIG_FILE" value="$(find mrpt_ekf_slam_3d)/config/rosconsole.config"/>
 
   <!--SLAM RUN-->
-  <node pkg="rviz" type="rviz" name="rviz_nav" output="screen" args="-d $(find mrpt_ekf_slam_3d)/rviz/rviz_conf_ekf_3d.rviz"></node>
-  <node pkg="mrpt_ekf_slam_3d" type="mrpt_ekf_slam_3d" name="mrpt_ekf_slam_3d" output="screen"></node>
+  <!-- <node pkg="rviz" type="rviz" name="rviz_nav" output="screen" args="-d $(find mrpt_ekf_slam_3d)/rviz/rviz_conf_ekf_3d.rviz">
+  </node> -->
+
+  <node pkg="mrpt_ekf_slam_3d" type="mrpt_ekf_slam_3d" name="mrpt_ekf_slam_3d" output="screen">
+  </node>
 
 </launch>
