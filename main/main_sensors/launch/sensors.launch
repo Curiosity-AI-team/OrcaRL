@@ -1,14 +1,20 @@
 <launch>
 
+    <!-- launch aruco tf publisher -->
+    <include file="$(find aruco_ros)/launch/marker_publisher.launch">
+        <arg name="camera_info" value="/yolov4_publisher/stereo/camera_info" />
+        <arg name="camera_image" value="/yolov4_publisher/stereo/depth" />
+    </include>
+
     <!-- launch camera + yolo -->
     <include file="$(find depthai_examples)/launch/yolov4_publisher.launch">
         <arg name="camera_model" value="OAK-D-LITE" />
     </include>
 
     <!-- launch imu -->
-    <arg name="calib_file" default="/home/jetson/catkin_ws/src/OrcaRL/sensors/mpu9250_ros/config/calib.json" doc="Path to the calibration file"/>
+    <!-- <arg name="calib_file" default="/home/jetson/catkin_ws/src/OrcaRL/sensors/mpu9250_ros/config/calib.json" doc="Path to the calibration file"/>
     <node name="mpu_node" pkg="mpu9250_ros" type="mpu_node.py" output="screen"  args="$(arg calib_file)">
-    </node>
+    </node> -->
 
     <!-- <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
 

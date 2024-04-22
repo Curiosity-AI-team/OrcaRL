@@ -1,1 +1,1 @@
-roslaunch main main.launch
+roslaunch main_sensors sensors.launch

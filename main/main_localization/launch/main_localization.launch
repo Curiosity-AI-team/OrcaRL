@@ -1,11 +1,5 @@
 <launch>
 
-    <!-- launch aruco tf publisher -->
-    <include file="$(find aruco_ros)/launch/marker_publisher.launch">
-        <arg name="camera_info" value="/yolov4_publisher/stereo/camera_info" />
-        <arg name="camera_image" value="/yolov4_publisher/stereo/depth" />
-    </include>
-
     <!-- launch ekf slam -->
     <include file="$(find mrpt_ekf_slam_3d)/launch/ekf_slam_3d.launch">
     </include>
