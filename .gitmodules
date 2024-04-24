@@ -1,0 +1,3 @@
+[submodule "sensors/mpu9250_ros"]
+	path = sensors/mpu9250_ros
+	url = https://github.com/TPODAvia/mpu9250_ros.git

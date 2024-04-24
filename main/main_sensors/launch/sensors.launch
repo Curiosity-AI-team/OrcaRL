@@ -1,11 +1,5 @@
 <launch>
 
-    <!-- launch aruco tf publisher -->
-    <include file="$(find aruco_ros)/launch/marker_publisher.launch">
-        <arg name="camera_info" value="/yolov4_publisher/color/camera_info" />
-        <arg name="camera_image" value="/yolov4_publisher/color/image" />
-    </include>
-
     <!-- launch camera + yolo -->
     <include file="$(find depthai_examples)/launch/yolov4_publisher.launch">
         <arg name="camera_model" value="OAK-D-LITE" />

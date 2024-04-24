@@ -1,11 +1,15 @@
 <launch>
 
+    <!-- launch camera -->
+    <!-- <include file="$(find main_sensors)/launch/sensors.launch">
+    </include> -->
+
     <!-- launch ekf slam -->
     <include file="$(find mrpt_ekf_slam_3d)/launch/ekf_slam_3d.launch">
     </include>
 
     <!-- memory -->
-    <include file="$(find tf_memory)/launch/tf_memory.launch">
-    </include>
+    <!-- <include file="$(find tf_memory)/launch/tf_memory.launch">
+    </include> -->
 
 </launch>
