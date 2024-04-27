@@ -1,8 +1,9 @@
 const int muxSIG = A0;
-const int muxS0 = 8;
-const int muxS1 = 9;
-const int muxS2 = 10;
-const int muxS3 = 11;
+const int muxS0 = 49;
+const int muxS1 = 50;
+const int muxS2 = 51;
+const int muxS3 = 52;
+const int muxEN = 53;
 
 int SetMuxChannel (byte channel)
 {
@@ -14,12 +15,14 @@ int SetMuxChannel (byte channel)
 
 void setup()
 {
+  pinMode (muxEN, OUTPUT);
   pinMode (muxSIG, OUTPUT);
   pinMode (muxS0, OUTPUT);
   pinMode (muxS1, OUTPUT);
   pinMode (muxS2, OUTPUT);
   pinMode (muxS3, OUTPUT);
-  Serial.begin(9600);
+  digitalWrite (muxEN, LOW);
+  Serial.begin(115200);
 }
 
 void loop()
