@@ -29,35 +29,31 @@ const int muxEN = 53;
 
 // Servo related variables
 Servo servos[20];
-int servoPins[20] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
+int servoPins[20] = {26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45};
 int positions[20];
 bool DEBUG = true;
 
 void setup() {
   Serial.begin(115200);
-  Serial.println(__FILE__);
-  Serial.print("INA3221_LIB_VERSION: ");
-  Serial.println(INA3221_LIB_VERSION);
-  Serial.println();
-
+  Serial.setTimeout(25);
   // Initialize I2C buses
   Wire.begin();
   Wire1.begin();
 
   // Initialize sensors
-  for (int i = 0; i < numSensors; i++) {
-    sensors[i] = INA3221(addresses[i], wires[i]);
-    if (!sensors[i].begin()) {
-      Serial.print("Could not connect to INA");
-      Serial.print(i);
-      Serial.println(". Fix and Reboot");
-    } else {
-      Serial.print("Found INA");
-      Serial.print(i);
-      Serial.print(" at: \t");
-      Serial.println(sensors[i].getAddress());
-    }
-  }
+  // for (int i = 0; i < numSensors; i++) {
+  //   sensors[i] = INA3221(addresses[i], wires[i]);
+  //   if (!sensors[i].begin()) {
+  //     Serial.print("Could not connect to INA");
+  //     Serial.print(i);
+  //     Serial.println(". Fix and Reboot");
+  //   } else {
+  //     Serial.print("Found INA");
+  //     Serial.print(i);
+  //     Serial.print(" at: \t");
+  //     Serial.println(sensors[i].getAddress());
+  //   }
+  // }
 
   // Initialize multiplexer pins
   pinMode(muxEN, OUTPUT);
@@ -75,7 +71,6 @@ void setup() {
   pinMode(13, OUTPUT);
   analogReadResolution(12);
 
-  delay(5000); // Adjust delay as needed
 }
 
 void readSensor_all(INA3221 &sensor) {
@@ -159,37 +154,38 @@ void loop() {
           feedback += ";";
         }
       }
-    }
 
-    // INA3221 sensor readings
-    for (int i = 0; i < numSensors; i++) {
-      for (int ch = 0; ch < 3; ch++) {
-        feedback += String(sensors[i].getCurrent_mA(ch));
-        if (i < numSensors) {
-          feedback += ",";
-        } else {
-          feedback += ";";
+      // INA3221 sensor readings
+      for (int i = 0; i < numSensors; i++) {
+        for (int ch = 0; ch < 3; ch++) {
+          feedback += String(sensors[i].getCurrent_mA(ch));
+          if (!( (i == (numSensors-1)) &&  (ch == 2)   )) {
+            feedback += ",";
+          }
+          else {
+            feedback += ";";
+          }
         }
+      }
+
+      for (int i = 0; i < 16; i++) { // Assuming A0 and multiplexer
+          // Multiplexer operations
+          SetMuxChannel(i);
+          int val = analogRead(muxSIG);
+          feedback += String(val);
+          if (i < 16) {
+            feedback += ",";
+          }
+      }
+      for (int i = 1; i < 5; i++) { // Assuming A1 to A4
+          int sensorValue = analogRead(i);
+          feedback += String(sensorValue);
+          if (i < 4) {
+            feedback += ",";
+          }
       }
     }
 
-    for (int i = 0; i < 16; i++) { // Assuming A0 and multiplexer
-        // Multiplexer operations
-        SetMuxChannel(i);
-        int val = analogRead(muxSIG);
-        Serial.println(val);
-        feedback += String(val);
-        if (i < 16) {
-          feedback += ",";
-        }
-    }
-    for (int i = 1; i < 5; i++) { // Assuming A1 to A4
-        int sensorValue = analogRead(i);
-        feedback += String(sensorValue);
-        if (i < 4) {
-          feedback += ",";
-        }
-    }
     Serial.println(feedback);
  }
 
