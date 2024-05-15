@@ -9,7 +9,7 @@ project(tf_memory)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED
 camera_info_manager
-depthai_ros_msgs
+# depthai_ros_msgs
 rospy
 sensor_msgs
 )

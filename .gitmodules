@@ -1,3 +1,5 @@
-[submodule "sensors/mpu9250_ros"]
-	path = sensors/mpu9250_ros
-	url = https://github.com/TPODAvia/mpu9250_ros.git
+.vscode/
+vscode/
+c_cpp_properties.json
+settings.json
+
